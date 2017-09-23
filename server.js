@@ -42,8 +42,8 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 // =======================================================
-let routes;
-app.use("/", routes);
+const articleRoutes = require("./app/controllers/article-controller.js");
+app.use("/", articleRoutes);
 
 // Mongoose Connection
 // =======================================================
@@ -54,3 +54,5 @@ const db = mongoose.connection;
 db.on("error", error => console.log(`Mongoose Error: ${error}`));
 // on success db login
 db.on("open", () => console.log("Mongoose connection successful."));
+// listening on port 8080
+app.listen(8080, () => console.log("App running on port 8080!"));
