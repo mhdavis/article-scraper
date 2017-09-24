@@ -2,6 +2,24 @@ body {
   background-color: #3f4448;
 }
 
+.scraper-jumbo {
+  box-shadow: 3px 3px 20px #1d1f21;
+}
+
 .scraper-card {
   margin: 1em 0em;
+  box-shadow: 3px 3px 20px #1d1f21;
+}
+
+.scraper-footer {
+  bottom: 0;
+  height: 60px;
+  margin: 1em 0em 0em 0em;
+  background-color: #292b2c;
+  color: white;
+  box-shadow: 3px 3px 20px #1d1f21;
+}
+
+.scraper-footnote {
+  padding-top: 1em;
 }
