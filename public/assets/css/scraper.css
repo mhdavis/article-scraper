@@ -1,3 +1,7 @@
 body {
   background-color: #3f4448;
-};
+}
+
+.scraper-card {
+  margin: 1em 0em;
+}
