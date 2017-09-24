@@ -42,7 +42,7 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 // =======================================================
-const articleRoutes = require("./app/controllers/article-controller.js");
+const articleRoutes = require("./app/controllers/articles-controller.js");
 app.use("/", articleRoutes);
 
 // Mongoose Connection

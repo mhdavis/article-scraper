@@ -29,4 +29,12 @@ router.get("/scrape", function (req, res) {
   res.send("Scrape Complete");
 });
 
+router.get("/", function (req, res) {
+  res.render('index');
+});
+
+router.get("/saved", function (req, res) {
+  res.render('saved');
+});
+
 module.exports = router;
