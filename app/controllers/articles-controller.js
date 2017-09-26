@@ -1,7 +1,7 @@
-const express = require("express");
-const router = express.Router();
 const request = require("request");
 const cheerio = require("cheerio");
+const express = require("express");
+const router = express.Router();
 
 // ROUTE
 // route for scraping articles and then sending scraped articles to front end
@@ -9,20 +9,24 @@ const cheerio = require("cheerio");
 router.get("/scrape", function (req, res) {
   request("https://www.vox.com/policy-and-politics", function (error, response, html) {
     // scrape articles and display them for all to see
+    const articles = [];
 
     const $ = cheerio.load(html);
+    $("h2.c-entry-box--compact__title").each(function (i, element) {
+      const title = $(element).text();
+      const link = $(element).children('a').attr('href');
 
-    $("h2.c-entry-box--compact__title a").each(function (i, element) {
-      const result = {};
+      const result = {
+        title: title,
+        link: link
+      };
 
-      result.title = $(this).children("a").text();
-      result.link = $(this).children("a").attr("href");
-
+      articles.push(result);
     });
+
+    res.json(articles);
+
   });
-
-  res.json(result);
-
 });
 
 // ROUTE

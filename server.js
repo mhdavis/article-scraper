@@ -44,6 +44,7 @@ app.set("view engine", "handlebars");
 // =======================================================
 const articleRoutes = require("./app/controllers/articles-controller.js");
 app.use("/", articleRoutes);
+app.use("/scrape", articleRoutes);
 
 // Mongoose Connection
 // =======================================================
