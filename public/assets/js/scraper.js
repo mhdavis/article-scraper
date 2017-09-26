@@ -8,9 +8,42 @@ $(document).on('click', '#scrape-btn', function (e) {
     url: "/scrape",
     dataType: "json",
   }).done(function (data) {
+    $("#left-col").html('');
+    $("#right-col").html('');
+
     // loop through data and create panels
     // alert user that scrape is complete
-    console.log(data);
+    data.forEach(function (article, index) {
+      let $card = $("<div>").addClass("card scraper-card");
+      let $articleLink = $("<a>").attr("href", article.link);
+      let $cardHeader = $("<h3>").addClass("card-header").text(article.title);
+      let $cardBlock = $("<div>").addClass("card-block");
+      let $pullRight = $("<div>").addClass("pull-right");
+      let $saveButton = $("<a>").addClass("save-article-btn scraper-btn btn btn-success").attr("href", "#").text("Save");
+      let $deleteButton = $("<a>").addClass("delete-article-btn scraper-btn btn btn-danger").attr("href", "#").text("Delete");
+
+      // append article link to card
+      $articleLink.append($cardHeader);
+      $card.append($articleLink);
+
+      // append card block w/ buttons to card
+      $cardBlock.append($pullRight);
+      $pullRight.append($saveButton);
+      $pullRight.append($deleteButton);
+      $card.append($cardBlock);
+
+      // if its an even entry append to left column
+      // otherwise append to right column
+      if (index % 2 == 0) {
+        $("#left-col").append($card);
+      } else {
+        $("#right-col").append($card);
+      }
+
+      return false;
+    });
+
+    alert(`Scrape Complete! ${data.length} Articles Retrieved`);
   });
 
 });
