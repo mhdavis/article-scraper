@@ -15,7 +15,7 @@ $(document).on('click', '#scrape-btn', function (e) {
     // alert user that scrape is complete
     data.forEach(function (article, index) {
       let $card = $("<div>").addClass("card scraper-card");
-      let $articleLink = $("<a>").attr("href", article.link);
+      let $articleLink = $("<a>").addClass("article-link").attr("href", article.link).attr("target", "_blank");
       let $cardHeader = $("<h3>").addClass("card-header").text(article.title);
       let $cardBlock = $("<div>").addClass("card-block");
       let $pullRight = $("<div>").addClass("pull-right");
@@ -52,43 +52,32 @@ $(document).on('click', '#scrape-btn', function (e) {
 $(document).on('click', '.save-article-btn', function (e) {
   // extract information about Article
   e.preventDefault();
+
   const title = $(this)
-  .parent()
-  .parent()
-  .siblings()[0]
+  .parents(".scraper-card")
+  .children(".article-link")
+  .children(".card-header")[0]
   .innerText;
 
   const link = $(this)
-  .parent()
-  .parent()
-  .parent()
-  .children("a")[0]
+  .parents(".scraper-card")
+  .children(".article-link")[0]
   .href;
-
-  const line = $(this)
-  .parent()
-  .parent()
-  .children(".card-text")[0]
-  .innerText;
 
   const savedArticle = {
     title: title,
-    line: line,
-    link: link,
-    note: []
+    link: link
   }
 
-  console.log(savedArticle);
-
   // pass data up to route via ajax call
-  // $.ajax({
-  //   method: "POST",
-  //   url: "/",
-  //   dataType: "json",
-  //   data: null,
-  // }).done(function (data) {
-  //   // alert user article has been saved
-  //   console.log(data);
-  // });
+  $.ajax({
+    method: "POST",
+    url: "/",
+    dataType: "json",
+    data: savedArticle,
+  }).done(function (data) {
+    // alert user article has been saved
+    alert("Article Saved!");
+  });
 
 });
