@@ -28,6 +28,8 @@ router.get("/scrape", function (req, res) {
   });
 });
 
+
+// HOME ROUTES
 router.get("/", function (req, res) {
   res.render('index');
 });
@@ -45,19 +47,34 @@ router.post("/", function (req, res) {
   });
 });
 
+// SAVED ARTICLES ROUTES
 router.get("/saved", function (req, res) {
   Article.find({}, function (error, doc) {
     if (error) {
       console.log(error)
     } else {
-      console.log("====== DOCS ======");
+      console.log("=========== DOC ============");
       console.log(doc);
+      console.log("============================");
       let ArticlesObj = {
         articles: doc
       }
       res.render('saved', ArticlesObj);
     }
   });
+});
+
+router.delete("/saved", function (req, res) {
+  Article.remove({
+    _id: req.body.id
+  }, function (error, data) {
+    if (!error) {
+      res.json(data);
+    } else {
+      console.log(error);
+    }
+  });
+
 });
 
 module.exports = router;

@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <a class="navbar-brand" href="#">Scraper</a>
+  <a class="navbar-brand" href="/">Scraper</a>
 
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
@@ -25,12 +25,12 @@
   <div class="row">
     <div class="col-8 mx-auto">
   {{#articles}}
-    <div class="card scraper-card">
+    <div id="{{_id}}" class="card scraper-card">
       <a href="{{link}}" target="_blank"><h3 class="card-header">{{title}}</h3></a>
       <div class="card-block">
         <div class="pull-right">
-          <a href="#" class="btn btn-warning">Notes</a>
-          <a href="#" class="btn btn-danger">Remove</a>
+          <a href="#" class="article-notes-btn btn btn-warning">Notes</a>
+          <a href="#" class="article-remove-btn btn btn-danger">Remove</a>
         </div>
       </div>
     </div>
@@ -38,3 +38,15 @@
     <div>
   </div>
 </div>
+
+<footer class="footer scraper-footer">
+  <div class="container">
+    <p class="scraper-footnote text-center">Developed by Michael Davis</p>
+  </div>
+</footer>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script src="assets/js/saved.js" type="text/javascript"></script>
