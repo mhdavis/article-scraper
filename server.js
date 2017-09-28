@@ -48,7 +48,7 @@ app.use("/scrape", articleRoutes);
 
 // Mongoose Connection
 // =======================================================
-mongoose.connect("localhost");
+mongoose.connect("mongodb://localhost/scraper_db");
 const db = mongoose.connection;
 
 // mongoose errors

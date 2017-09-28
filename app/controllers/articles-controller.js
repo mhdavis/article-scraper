@@ -24,36 +24,40 @@ router.get("/scrape", function (req, res) {
 
       articles.push(result);
     });
-
     res.json(articles);
-
   });
 });
 
-// ROUTE
-// route from saving article button ajax call ('/', post route)
-  // create mongodb entry with properties title, link, and empty notes array
-router.post("/", function (req, res) {
-  console.log(req.body);
-  // let entry = new Article(result);
-  //
-  // entry.save(function (err, doc) {
-  //   if (err) {
-  //     console.log(err);
-  //   } else {
-  //     console.log(doc);
-  //   }
-  // });
-});
-
-
-// TEMPORARY ROUTES FOR FRONTEND DEVELOPMENT
 router.get("/", function (req, res) {
   res.render('index');
 });
 
+router.post("/", function (req, res) {
+  let entry = new Article(req.body);
+
+  entry.save(function (err, doc) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(doc);
+    }
+    res.json(doc);
+  });
+});
+
 router.get("/saved", function (req, res) {
-  res.render('saved');
+  Article.find({}, function (error, doc) {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log("====== DOCS ======");
+      console.log(doc);
+      let ArticlesObj = {
+        articles: doc
+      }
+      res.render('saved', ArticlesObj);
+    }
+  });
 });
 
 module.exports = router;
