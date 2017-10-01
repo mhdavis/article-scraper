@@ -52,11 +52,18 @@
         <h4 class="modal-title">Modal Head</h4>
       </div>
       <div class="modal-body">
-        <p>Some text in the modal.</p>
+        <ul class="notes-container"></ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success">Save Note</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <div class="row">
+          <div class="col-8">
+            <textarea class="note-input form-control" rows="3"></textarea>
+          </div>
+          <div class="col-4 text-center">
+            <button type="button" class="save-note-btn btn btn-success">Save Note</button>
+            <button type="button" class="close-modal-btn btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
 
