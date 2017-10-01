@@ -8,12 +8,26 @@
 
 $(document).on('click', '.article-notes-btn', function (e) {
   e.preventDefault();
-});
-
-// NOTE EVENT HANDLERS
+  // NOTE EVENT HANDLERS
   // event handler for save note button
-    // extracts note text from text box
-    // makes ajax request
+  // extracts note text from text box
+  // makes ajax request
+
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/saved",
+  //   dataType: "json"
+  // }).done(function (data) {
+  //   // toggle model with information
+  //   $("#myModal").modal({
+  //     show: 'false'
+  //   });
+
+  $("#myModal").modal({
+    show: true
+  });
+
+});
 
   // event handler for deleting a specific note
     // get note information
@@ -23,7 +37,8 @@ $(document).on('click', '.article-remove-btn', function (e) {
   e.preventDefault();
 
   const id = $(this)
-  .parents(".scraper-card")[0].id;
+  .parents(".scraper-card")
+  .attr("data-id");
 
   const ArticleId = {
     id: id

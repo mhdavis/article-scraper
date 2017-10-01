@@ -35,15 +35,20 @@ router.get("/", function (req, res) {
 });
 
 router.post("/", function (req, res) {
-  let entry = new Article(req.body);
+  Article.find({ title: req.body.title }, function (error, doc) {
+    console.log("======= POST DOC =======");
+    console.log(doc);
+    console.log("========================");
+    if (doc.length === 0) {
+      let entry = new Article(req.body);
 
-  entry.save(function (err, doc) {
-    if (err) {
-      console.log(err);
+      entry.save(function (err, doc) {
+        err ? console.log(err) : console.log(doc);
+        res.json(doc);
+      });
     } else {
-      console.log(doc);
+      res.send(`Saved Article: "${req.body.title}" Already Exists!`);
     }
-    res.json(doc);
   });
 });
 
@@ -53,9 +58,9 @@ router.get("/saved", function (req, res) {
     if (error) {
       console.log(error)
     } else {
-      console.log("=========== DOC ============");
+      console.log("===== SAVED ARTICLES =====");
       console.log(doc);
-      console.log("============================");
+      console.log("==========================");
       let ArticlesObj = {
         articles: doc
       }

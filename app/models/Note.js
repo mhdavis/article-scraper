@@ -5,21 +5,20 @@ const Schema = mongoose.Schema;
 
 // Create the Note schema
 const NoteSchema = new Schema({
+
   // Just a string
-  title: {
-    type: String
-  },
-  // Just a string
-  body: {
-    type: String
+  text: {
+    type: String,
+    required: true
   }
+
 });
 
 // Remember, Mongoose will automatically save the ObjectIds of the notes
 // These ids are referred to in the Article model
 
 // Create the Note model with the NoteSchema
-var Note = mongoose.model("Note", NoteSchema);
+const Note = mongoose.model("Note", NoteSchema);
 
 // Export the Note model
 module.exports = Note;

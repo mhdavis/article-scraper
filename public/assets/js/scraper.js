@@ -67,7 +67,7 @@ $(document).on('click', '.save-article-btn', function (e) {
   const savedArticle = {
     title: title,
     link: link
-  }
+  };
 
   // pass data up to route via ajax call
   $.ajax({
@@ -79,5 +79,4 @@ $(document).on('click', '.save-article-btn', function (e) {
     // alert user article has been saved
     alert("Article Saved!");
   });
-
 });
