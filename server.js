@@ -6,7 +6,7 @@ const path = require("path");
 const exphbs = require("express-handlebars");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-mongoose.promise = Promise;
+
 // Scraping Tools
 const request = require("request");
 const cheerio = require("cheerio");
@@ -42,12 +42,9 @@ app.set("view engine", "handlebars");
 
 // Import routes and give the server access to them.
 // =======================================================
-const articleRoutes = require("./app/controllers/articles-controller.js");
-const notesRoutes = require("./app/controllers/notes-controller.js");
+const articleRoutes = require("./app/routes/article-routes");
 
 app.use("/", articleRoutes);
-app.use("/scrape", articleRoutes);
-app.use("/notes", notesRoutes);
 
 // Mongoose Connection
 // =======================================================

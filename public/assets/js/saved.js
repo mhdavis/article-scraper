@@ -12,34 +12,36 @@ $(document).on('click', '.article-notes-btn', function (e) {
   .parents(".scraper-card")
   .attr("data-id");
 
-  const ArticleId = {
-    id: id
-  };
-
   $.ajax({
     method: "GET",
     url: '/notes/' + id,
-    dataType: "json"
-  }).done(function (data) {
-    console.log(data);
-    // toggle model with information
-    // console.log(data);
-    // let $li = $("<li>")
-    // .attr("comment-id", data.id)
-    // .val(data.text);
-    //
-    // let $deleteBtn = $("<button>")
-    // .addClass("btn btn-danger")
-    // .text("X");
-    //
-    // $li.append($deleteBtn);
-    //
-    // $("#myModal").modal({
-    //   show: true
-    // });
+    dataType: "json",
+    success: function (data) {
+      console.log("========== FRONTEND RETRIEVED ARTICLES ==========");
+      console.log(data);
+      console.log("=================================================");
+      // toggle model with information
+      // let $li = $("<li>")
+      // .attr("comment-id", data.id)
+      // .val(data.text);
+      //
+      // let $deleteBtn = $("<button>")
+      // .addClass("btn btn-danger")
+      // .text("X");
+      //
+      // $li.append($deleteBtn);
+      $(".modal-title")
+      .attr("data-id", data._id)
+      .text(data.title);
+
+      $("#myModal").modal({
+        show: true
+      });
+    }
   });
 
 });
+
 // event handler for deleting a specific note
   // get note information
   // make ajax call (method delete)
@@ -75,4 +77,25 @@ $(document).on("click", ".save-note-btn", function (e) {
   // event handler for save note button
   // extracts note text from text box
   // makes ajax request
+  const id = $(".modal-title").attr("data-id");
+  const text = $(".note-input").val();
+
+  const noteText = {
+    text: text
+  }
+
+  $.ajax({
+    method: "POST",
+    url: "/notes/" + id,
+    dataType: "json",
+    data: noteText,
+    success: function (data) {
+      console.log("NOTE ADDED TO ARTICLE!");
+      console.log(data);
+    },
+    error: function (err) {
+      console.log(err);
+    }
+  });
+
 });

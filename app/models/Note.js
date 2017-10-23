@@ -14,11 +14,5 @@ const NoteSchema = new Schema({
 
 });
 
-// Remember, Mongoose will automatically save the ObjectIds of the notes
-// These ids are referred to in the Article model
-
-// Create the Note model with the NoteSchema
-const Note = mongoose.model("Note", NoteSchema);
-
-// Export the Note model
-module.exports = Note;
+// Export the Note Schema
+module.exports = NoteSchema;

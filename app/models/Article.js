@@ -18,7 +18,7 @@ const ArticleSchema = new Schema({
     required: true
   },
 
-  notes: [{ type: Schema.Types.ObjectId, ref: 'Note'}]
+  notes: [ Note ]
 });
 
 // Create the Article model with the ArticleSchema
