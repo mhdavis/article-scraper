@@ -1,4 +1,6 @@
-// scrape button event handler
+// ======================================
+// SCRAPE ARTICLES
+// ======================================
 $(document).on('click', '#scrape-btn', function (e) {
   e.preventDefault();
 
@@ -48,7 +50,9 @@ $(document).on('click', '#scrape-btn', function (e) {
 
 });
 
-// save article button event handler
+// ======================================
+// SAVE ARTICLE
+// ======================================
 $(document).on('click', '.save-article-btn', function (e) {
   // extract information about Article
   e.preventDefault();

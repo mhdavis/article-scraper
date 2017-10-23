@@ -1,35 +1,40 @@
-// SAVED ARTICLE EVENT HANDLERS
-  // event handler for `delete from saved` button
-    // makes ajax call method delete
-
-  // event handler from `article notes` button
-    // makes ajax call method put
-
+// ======================================
+// GET ARTICLE NOTES
+// ======================================
 $(document).on('click', '.article-notes-btn', function (e) {
+
   e.preventDefault();
 
-  const id = $(this)
+  const articleId = $(this)
   .parents(".scraper-card")
   .attr("data-id");
 
   $.ajax({
     method: "GET",
-    url: '/notes/' + id,
+    url: `notes/${articleId}`,
     dataType: "json",
     success: function (data) {
-      console.log("========== FRONTEND RETRIEVED ARTICLES ==========");
-      console.log(data);
-      console.log("=================================================");
-      // toggle model with information
-      // let $li = $("<li>")
-      // .attr("comment-id", data.id)
-      // .val(data.text);
-      //
-      // let $deleteBtn = $("<button>")
-      // .addClass("btn btn-danger")
-      // .text("X");
-      //
-      // $li.append($deleteBtn);
+      // clear notes container ul
+      $(".notes-container").html('');
+
+      let notes = data.notes;
+      let $deleteBtn = $("<button>")
+      .addClass("btn btn-danger")
+      .text("X");
+
+      notes.forEach(function (note, index) {
+        let $li = $("<li>")
+        .attr("note-id", note._id)
+        .attr("note-index", index)
+        .text(note.text);
+
+        $li.append($deleteBtn);
+
+        $(".notes-container").append($li);
+        return;
+      });
+
+      // Append article title to modal
       $(".modal-title")
       .attr("data-id", data._id)
       .text(data.title);
@@ -42,10 +47,9 @@ $(document).on('click', '.article-notes-btn', function (e) {
 
 });
 
-// event handler for deleting a specific note
-  // get note information
-  // make ajax call (method delete)
-
+// ======================================
+// REMOVE ARTICLE
+// ======================================
 $(document).on('click', '.article-remove-btn', function (e) {
   e.preventDefault();
 
@@ -70,14 +74,11 @@ $(document).on('click', '.article-remove-btn', function (e) {
   });
 });
 
-// ARTICLE NOTES EVENT HANDLERS
-
+// ======================================
+// CREATE ARTICLE NOTE
+// ======================================
 $(document).on("click", ".save-note-btn", function (e) {
-  // NOTE EVENT HANDLERS
-  // event handler for save note button
-  // extracts note text from text box
-  // makes ajax request
-  const id = $(".modal-title").attr("data-id");
+  const articleId = $(".modal-title").attr("data-id");
   const text = $(".note-input").val();
 
   const noteText = {
@@ -86,7 +87,7 @@ $(document).on("click", ".save-note-btn", function (e) {
 
   $.ajax({
     method: "POST",
-    url: "/notes/" + id,
+    url: `notes/${articleId}`,
     dataType: "json",
     data: noteText,
     success: function (data) {
@@ -99,3 +100,7 @@ $(document).on("click", ".save-note-btn", function (e) {
   });
 
 });
+
+// ======================================
+// DELETE ARTICLE NOTE
+// ======================================

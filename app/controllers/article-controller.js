@@ -100,14 +100,11 @@ ArticleController.removeEntry = function (req, res) {
 // ==================================================
 ArticleController.retrieveNotes = function (req, res) {
   Article.findOne({
-    "_id": req.params.id
-  }).exec(function (error, article) {
+    "_id": req.params.articleId
+  }, function (error, article) {
     if (error) {
-      console.log(error);
+      throw error;
     } else {
-      console.log("========== NOTE SPECIFIC GET ========");
-      console.log(article);
-      console.log("=====================================");
       res.json(article);
     }
   });
@@ -117,24 +114,18 @@ ArticleController.retrieveNotes = function (req, res) {
 //  CREATE NOTE ENTRY
 // ==================================================
 ArticleController.createNote = function (req, res) {
-  // get the article id
-  console.log("============ NOTES POST ============");
-  console.log(req.params.id);
-  console.log(req.body.text);
-  console.log("====================================");
-  // create a new note for the article
 
   Article.findOne({
-    "_id": req.params.id
+    "_id": req.params.articleId
   }, function (err, article) {
     if (err) {
       console.log(err);
     } else {
-      let noteEntry = new Note ({
+      let note = {
         text: req.body.text,
-      });
+      };
 
-      article.notes.push(noteEntry);
+      article.notes.push(note);
 
       article.save(function (error) {
         if (error) {

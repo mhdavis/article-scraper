@@ -34,26 +34,26 @@ router.delete("/", ArticleController.removeEntry);
 // ==================================================
 //  RETRIEVE ARTICLE NOTES
 // ==================================================
-router.get(":id/notes", ArticleController.retrieveNotes);
+router.get("/notes/:articleId", ArticleController.retrieveNotes);
 
 // ==================================================
 //  CREATE NOTE ENTRY
 // ==================================================
-router.post(":id/notes", ArticleController.createNote);
+router.post("/notes/:articleId", ArticleController.createNote);
 
 // ==================================================
 //  DELETE NOTE ENTRY
 // ==================================================
-router.delete(":id/notes", ArticleController.deleteNote);
+router.delete("/notes/:articleId", ArticleController.deleteNote);
 
 // ==================================================
 // POST NEW NOTE TO ARTICLE
 // ==================================================
-router.post("notes/:id", ArticleController.createNote);
+router.post("/notes/:articleId", ArticleController.createNote);
 
 // ==================================================
 // DELETE A SPECIFIC NOTE FROM AN ARTICLE
 // ==================================================
-router.delete("notes/:id", ArticleController.deleteNote);
+router.delete("/notes/:articleId", ArticleController.deleteNote);
 
 module.exports = router;
