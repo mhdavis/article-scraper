@@ -1,9 +1,10 @@
 // ======================================
-// GET ARTICLE NOTES
+// GET ARTICLE INFO INTO MODAL
 // ======================================
 $(document).on('click', '.article-notes-btn', function (e) {
 
   e.preventDefault();
+  $(".note-input").val('');
 
   const articleId = $(this)
   .parents(".scraper-card")
@@ -18,9 +19,6 @@ $(document).on('click', '.article-notes-btn', function (e) {
       $(".notes-container").html('');
 
       let notes = data.notes;
-      let $deleteBtn = $("<button>")
-      .addClass("btn btn-danger")
-      .text("X");
 
       notes.forEach(function (note, index) {
         let $li = $("<li>")
@@ -28,6 +26,9 @@ $(document).on('click', '.article-notes-btn', function (e) {
         .attr("note-index", index)
         .text(note.text);
 
+        let $deleteBtn = $("<button>")
+        .addClass("btn btn-danger")
+        .text("X");
         $li.append($deleteBtn);
 
         $(".notes-container").append($li);
@@ -91,8 +92,25 @@ $(document).on("click", ".save-note-btn", function (e) {
     dataType: "json",
     data: noteText,
     success: function (data) {
-      console.log("NOTE ADDED TO ARTICLE!");
-      console.log(data);
+      $(".note-input").val('');
+      // create an li for the new note
+      // give the li the notes-id prop
+      // give the li the notes-index prop
+      // append it to the ul for the article
+
+      let notes = data.notes;
+      let note = notes[notes.length - 1];
+      let $deleteBtn = $("<button>")
+      .addClass("btn btn-danger")
+      .text("X");
+
+      let $li = $("<li>")
+      .attr("note-id", note._id)
+      .attr("note-index", notes.length - 1)
+      .text(note.text);
+
+      $li.append($deleteBtn);
+      $(".notes-container").append($li);
     },
     error: function (err) {
       console.log(err);
