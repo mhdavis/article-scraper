@@ -21,8 +21,7 @@ $(document).on('click', '#scrape-btn', function (e) {
       let $cardHeader = $("<h3>").addClass("card-header").text(article.title);
       let $cardBlock = $("<div>").addClass("card-block");
       let $pullRight = $("<div>").addClass("pull-right");
-      let $saveButton = $("<a>").addClass("save-article-btn scraper-btn btn btn-success").attr("href", "#").text("Save");
-      let $deleteButton = $("<a>").addClass("delete-article-btn scraper-btn btn btn-danger").attr("href", "#").text("Delete");
+      let $saveButton = $("<button>").addClass("save-article-btn btn btn-lg").text("Save");
 
       // append article link to card
       $articleLink.append($cardHeader);
@@ -31,7 +30,6 @@ $(document).on('click', '#scrape-btn', function (e) {
       // append card block w/ buttons to card
       $cardBlock.append($pullRight);
       $pullRight.append($saveButton);
-      $pullRight.append($deleteButton);
       $card.append($cardBlock);
 
       // if its an even entry append to left column

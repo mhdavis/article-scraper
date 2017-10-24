@@ -1,19 +1,19 @@
-<nav class="navbar navbar-fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
+<nav class="navbar navbar-fixed-top navbar-toggleable-md bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <a class="navbar-brand" href="/">Scraper</a>
+  <a class="scraper-navbar-brand navbar-brand" href="/">Vox Scraper</a>
 
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
 
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="scraper-nav-link nav-link selected" href="/">Home<span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="/saved">Saved Articles</a>
+        <a class="scraper-nav-link nav-link" href="/saved">Saved Articles</a>
       </li>
 
     </ul>
@@ -23,13 +23,13 @@
 
 <div class="jumbotron jumbotron-fluid scraper-jumbo">
   <div class="container">
-    <h1 class="display-3">Scraper</h1>
-    <p class="lead">Scrape and save articles with just the click of a button!</p>
-    <button id="scrape-btn" class="btn btn-success">Scrape</button>
+    <h1 class="display-3">Vox Scraper</h1>
+    <p class="lead">Scrape and save articles with just a click!</p>
+    <button id="scrape-btn" class="btn btn-lg">Scrape</button>
   </div>
 </div>
 
-<div class="container">
+<div class="scraper-container container">
   <div class="row">
     <!-- Left Column -->
     <div id="left-col" class="col-lg-6 col-md-12"></div>
@@ -40,7 +40,7 @@
   </div>
 </div>
 
-<footer class="footer scraper-footer">
+<footer class="footer navbar-fixed-bottom scraper-footer">
   <div class="container">
     <p class="scraper-footnote text-center">Developed by Michael Davis</p>
   </div>

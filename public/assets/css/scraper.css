@@ -1,20 +1,88 @@
 body {
-  background-color: #3f4448;
+  background-color: rgb(152, 152, 152);
+  font-family: 'Ramaraja', serif;
 }
 
+/* SCRAPER NAVBAR
+==========================================*/
+.scraper-navbar-brand {
+  font-size: 2em;
+  color: #FFF200;
+}
+
+.scraper-nav-link {
+  font-size: 1.5em;
+  color: rgb(152, 152, 152);
+  transition: 0.4s;
+}
+.scraper-nav-link:hover {
+  color: white;
+}
+
+.selected {
+  color: white;
+}
+
+/* SCRAPER JUMBOTRON
+==========================================*/
 .scraper-jumbo {
-  box-shadow: 3px 3px 20px #1d1f21;
   margin-bottom: 0em;
+  background-color: #FFF200;
+  box-shadow: 3px 3px 20px #1d1f21;
 }
 
+.scraper-jumbo p {
+  font-size: 1.5em;
+}
+
+#scrape-btn {
+  margin: 0em 0.5em;
+  font-size: 1.5em;
+  border-radius: 0px;
+  background-color: #FFF200;
+  color: #292b2c;
+  outline: 2px solid #292b2c;
+  transition: 0.3s;
+}
+#scrape-btn:hover {
+  color: white;
+  background-color: #292b2c;
+}
+
+/* SCRAPER CARDS
+==========================================*/
 .scraper-card {
   margin: 1em 0em;
   box-shadow: 3px 3px 20px #1d1f21;
 }
 
-.scraper-btn {
-  margin: 0em 0.5em;
+.article-link {
+  color: white;
+  transition: 0.3s;
 }
+.article-link:hover {
+  color: #FFF200;
+  text-decoration: none;
+}
+
+.card-header {
+  background-color: #292b2c;
+  font-size: 2.3em;
+}
+
+.save-article-btn {
+  font-size: 1.5em;
+  border-radius: 0px;
+  background-color: #FFF200;
+  color: #292b2c;
+  outline: 2px solid #292b2c;
+  transition: 0.3s;
+}
+.save-article-btn:hover {
+  color: white;
+  background-color: #292b2c;
+}
+
 
 .save-note-btn {
   margin: 0.25em 0;
@@ -28,15 +96,26 @@ body {
   height: 100%;
 }
 
+.scraper-container {
+  padding-bottom: 70px;
+}
+
+/* SCRAPER FOOTENOTE
+==========================================*/
 .scraper-footer {
-  margin: 0em;
+  position: fixed;
+  width: 100%;
   bottom: 0;
   height: 60px;
   background-color: #292b2c;
   color: white;
   box-shadow: 3px 3px 20px #1d1f21;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .scraper-footnote {
-  padding-top: 1em;
+  font-size: 1.5em;
+  margin: 0;
 }
