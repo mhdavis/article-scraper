@@ -9,7 +9,8 @@ const ArticleController = {};
 // SCRAPE ARTICLES
 // ==================================================
 ArticleController.scrape = function (req, res) {
-  request("https://www.vox.com/policy-and-politics", function (error, response, html) {
+  request("https://www.vox.com/policy-and-politics", function (err, response, html) {
+    if (err) throw err;
     // scrape articles and display them for all to see
     const articles = [];
 
@@ -40,13 +41,10 @@ ArticleController.displayHome = function (req, res) {
 // RETRIEVE SAVED ARTICLES
 // ==================================================
 ArticleController.retrieveSavedArticles = function (req, res) {
-  Article.find({}, function (error, doc) {
-    if (error) {
-      console.log(error)
+  Article.find({}, function (err, doc) {
+    if (err) {
+      throw err;
     } else {
-      console.log("===== SAVED ARTICLES =====");
-      console.log(doc);
-      console.log("==========================");
       let ArticlesObj = {
         articles: doc
       }
@@ -59,15 +57,14 @@ ArticleController.retrieveSavedArticles = function (req, res) {
 //  CREATE ARTICLE ENTRY
 // ==================================================
 ArticleController.createEntry = function (req, res) {
-  Article.find({ title: req.body.title }, function (error, doc) {
-    console.log("======= POST DOC =======");
-    console.log(doc);
-    console.log("========================");
+  Article.find({ title: req.body.title }, function (err, doc) {
+    if (err) throw err;
+
     if (doc.length === 0) {
       let entry = new Article(req.body);
 
-      entry.save(function (err, doc) {
-        err ? console.log(err) : console.log(doc);
+      entry.save(function (error, doc) {
+        if (error) throw error;
         res.json(doc);
       });
     } else {
@@ -82,12 +79,11 @@ ArticleController.createEntry = function (req, res) {
 ArticleController.removeEntry = function (req, res) {
   Article.remove({
     _id: req.body.id
-  }, function (error, data) {
-    if (!error) {
-      res.json(data);
-    } else {
-      console.log(error);
+  }, function (err, data) {
+    if (err) {
+      throw err;
     }
+    res.json(data);
   });
 }
 
@@ -101,8 +97,8 @@ ArticleController.removeEntry = function (req, res) {
 ArticleController.retrieveNotes = function (req, res) {
   Article.findOne({
     "_id": req.params.articleId
-  }, function (error, article) {
-    if (error) {
+  }, function (err, article) {
+    if (err) {
       throw error;
     } else {
       res.json(article);
@@ -119,7 +115,7 @@ ArticleController.createNote = function (req, res) {
     "_id": req.params.articleId
   }, function (err, article) {
     if (err) {
-      console.log(err);
+      throw err;
     } else {
       let note = {
         text: req.body.text,
@@ -129,11 +125,8 @@ ArticleController.createNote = function (req, res) {
 
       article.save(function (error) {
         if (error) {
-          console.log(err);
-        } else {
-          console.log("INSIDE THE ARTICLE.SAVE!");
+          throw error;
         }
-
         res.json(article);
       });
     }
@@ -146,12 +139,12 @@ ArticleController.createNote = function (req, res) {
 // ==================================================
 ArticleController.deleteNote = function (req, res) {
 
-  User.findById(req.params.id, function (err, article) {
-    article[notes][req.body.index].remove();
+  Article.findById(req.params.articleId, function (err, article) {
+    article.notes.id(req.params.noteId).remove();
 
-    user.save(function (err) {
-      if (err) throw err;
-      res.send("Due Deleted");
+    article.save(function (error) {
+      if (error) throw error;
+      res.send(`Note ID: ${req.params.noteId} Deleted`);
     });
   });
 }

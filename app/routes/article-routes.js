@@ -54,6 +54,6 @@ router.post("/notes/:articleId", ArticleController.createNote);
 // ==================================================
 // DELETE A SPECIFIC NOTE FROM AN ARTICLE
 // ==================================================
-router.delete("/notes/:articleId", ArticleController.deleteNote);
+router.delete("/notes/:articleId/:noteId", ArticleController.deleteNote);
 
 module.exports = router;
