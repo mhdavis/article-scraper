@@ -66,12 +66,10 @@ $(document).on('click', '.article-remove-btn', function (e) {
   $.ajax({
     method: "DELETE",
     url: "/saved",
-    dataType: "json",
     data: ArticleId,
     success: function(data) {
-      console.log("IT WORKED! DELETED");
-      alert("Article Deleted!");
-      window.location.reload();
+      const articleItem = $(`[data-article-id=${id}]`)[0];
+      articleItem.remove();
     }
   });
 });

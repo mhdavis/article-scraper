@@ -25,7 +25,7 @@ router.post("/", ArticleController.createEntry);
 // ==================================================
 //  REMOVE ARTICLE ENTRY
 // ==================================================
-router.delete("/", ArticleController.removeEntry);
+router.delete("/saved", ArticleController.removeEntry);
 
 // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //                  NOTE METHODS
