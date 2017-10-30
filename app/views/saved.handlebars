@@ -1,19 +1,21 @@
+<link rel="stylesheet" href="assets/css/saved.css">
+
 <nav class="navbar navbar-fixed-top navbar-toggleable-md navbar-inverse bg-inverse">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <a class="navbar-brand" href="/">Scraper</a>
+  <a class="navbar-brand scraper-navbar-brand" href="/">Vox Scraper</a>
 
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item">
-        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link scraper-nav-link" href="/">Home<span class="sr-only">(current)</span></a>
       </li>
 
       <li class="nav-item active">
-        <a class="nav-link" href="/saved">Saved Articles</a>
+        <a class="nav-link scraper-nav-link" href="/saved">Saved Articles</a>
       </li>
 
     </ul>
@@ -21,17 +23,17 @@
   </div>
 </nav>
 
-<div class="container">
+<div class="saved-container container">
 
   <div class="row">
     <div class="col-8 mx-auto">
     {{#articles}}
     <div data-article-id="{{_id}}" class="card scraper-card">
-      <a href="{{link}}" target="_blank"><h3 class="card-header">{{title}}</h3></a>
+      <a class="article-link" href="{{link}}" target="_blank"><h3 class="card-header">{{title}}</h3></a>
       <div class="card-block">
         <div class="pull-right">
-          <a href="#" class="article-notes-btn btn btn-warning">Notes</a>
-          <a href="#" class="article-remove-btn btn btn-danger">Remove</a>
+          <a href="#" class="notes-article-btn btn btn-lg">Notes</a>
+          <a href="#" class="remove-article-btn btn btn-lg">Remove</a>
         </div>
       </div>
     </div>
@@ -59,8 +61,8 @@
             <textarea class="note-input form-control" rows="3"></textarea>
           </div>
           <div class="col-4 text-center">
-            <button type="button" class="save-note-btn btn btn-success">Save Note</button>
-            <button type="button" class="close-modal-btn btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="save-note-btn btn-lg">Add</button>
+            <button type="button" class="close-modal-btn btn-lg" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>

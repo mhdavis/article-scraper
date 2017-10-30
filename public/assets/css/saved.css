@@ -1,3 +1,18 @@
+body {
+  background-color: rgb(152, 152, 152);
+  font-family: 'Ramaraja', serif;
+}
+
+/* SCRAPER NAVBAR
+==========================================*/
+.scraper-navbar-brand {
+  font-size: 2em;
+}
+
+.scraper-nav-link {
+  font-size: 1.5em;
+}
+
 /* SCRAPER CARDS
 ==========================================*/
 .scraper-card {
@@ -16,31 +31,127 @@
 
 .card-header {
   background-color: #292b2c;
-  font: white;
+  font-size: 2.3em;
 }
 
-.save-article-btn {
-  margin: 0em 0.5em;
+.notes-article-btn {
+  margin: 0.2em 0.5em;
+  font-family: sans-serif;
   border-radius: 0px;
   background-color: #FFF200;
   color: #292b2c;
   outline: 2px solid #292b2c;
   transition: 0.3s;
 }
-.save-article-btn:hover {
+.notes-article-btn:hover {
   color: white;
   background-color: #292b2c;
 }
 
+.remove-article-btn {
+  margin: 0.2em 0.5em;
+  font-family: sans-serif;
+  border-radius: 0px;
+  background-color: #c82a2a;
+  color: #292b2c;
+  outline: 2px solid #292b2c;
+  transition: 0.3s;
+}
+.remove-article-btn:hover {
+  color: white;
+  background-color: #292b2c;
+}
 
+/* MODAL
+==========================================*/
+.modal-title {
+  color: #292b2c;
+}
+
+.notes-container {
+  list-style-type: none;
+  padding: 0em;
+}
+
+/* MODAL
+==========================================*/
+.note-item {
+  padding: 0.5em;
+  border: 2px solid #292b2c;
+  margin: 0.2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-content {
+  font-size: 1.5em;
+}
+
+.delete-note-btn {
+  margin: 0.1em;
+  border: 0px;
+  color: white;
+  background-color:  #c82a2a;
+  border: 2px solid #292b2c;
+  transition: 0.4s;
+}
+.delete-note-btn:hover {
+  background-color: #292b2c;
+}
+
+/* MODAL BUTTONS
+==========================================*/
 .save-note-btn {
   margin: 0.25em 0;
+  border: 2px solid #292b2c;
+  background-color: #28a222;
+  border-radius: 0px;
+  transition: 0.4s;
+}
+.save-note-btn:hover {
+  color: white;
+  background-color: #1b6617;
 }
 
 .close-modal-btn {
+  background-color: #FFF200;
+  border: 2px solid #292b2c;
+  border-radius: 0px;
   margin: 0.25em 0;
+  transition: 0.4s;
+}
+.close-modal-btn:hover {
+  background-color: #292b2c;
+  color: white;
 }
 
 .note-input {
   height: 100%;
+  border: 2px solid #292b2c;
+}
+
+/* SAVED CONTAINER
+==========================================*/
+.saved-container {
+  padding-bottom: 70px;
+}
+
+/* SAVED FOOTENOTE
+==========================================*/
+.scraper-footer {
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 60px;
+  background-color: #292b2c;
+  color: white;
+  box-shadow: 3px 3px 20px #1d1f21;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scraper-footnote {
+  font-size: 1.5em;
+  margin: 0;
 }

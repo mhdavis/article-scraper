@@ -7,20 +7,10 @@ body {
 ==========================================*/
 .scraper-navbar-brand {
   font-size: 2em;
-  color: #FFF200;
 }
 
 .scraper-nav-link {
   font-size: 1.5em;
-  color: rgb(152, 152, 152);
-  transition: 0.4s;
-}
-.scraper-nav-link:hover {
-  color: white;
-}
-
-.selected {
-  color: white;
 }
 
 /* SCRAPER JUMBOTRON
@@ -64,6 +54,9 @@ body {
   color: #FFF200;
   text-decoration: none;
 }
+.article-link:focus {
+  color: #FFF200;
+}
 
 .card-header {
   background-color: #292b2c;
@@ -96,11 +89,13 @@ body {
   height: 100%;
 }
 
+/* SCRAPER CONTAINER
+==========================================*/
 .scraper-container {
   padding-bottom: 70px;
 }
 
-/* SCRAPER FOOTENOTE
+/* SCRAPER FOOTNOTE
 ==========================================*/
 .scraper-footer {
   position: fixed;

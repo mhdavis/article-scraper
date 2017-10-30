@@ -2,50 +2,51 @@
 // SCRAPE ARTICLES
 // ======================================
 $(document).on('click', '#scrape-btn', function (e) {
-  e.preventDefault();
-
   // clear current entries inside columns
   $.ajax({
     method: "GET",
     url: "/scrape",
     dataType: "json",
-  }).done(function (data) {
-    $("#left-col").html('');
-    $("#right-col").html('');
+    success: function (data) {
+      $("#left-col").html('');
+      $("#right-col").html('');
 
-    // loop through data and create panels
-    // alert user that scrape is complete
-    data.forEach(function (article, index) {
-      let $card = $("<div>").addClass("card scraper-card");
-      let $articleLink = $("<a>").addClass("article-link").attr("href", article.link).attr("target", "_blank");
-      let $cardHeader = $("<h3>").addClass("card-header").text(article.title);
-      let $cardBlock = $("<div>").addClass("card-block");
-      let $pullRight = $("<div>").addClass("pull-right");
-      let $saveButton = $("<button>").addClass("save-article-btn btn btn-lg").text("Save");
+      // loop through data and create panels
+      // alert user that scrape is complete
+      data.forEach(function (article, index) {
+        let $card = $("<div>").addClass("card scraper-card");
+        let $articleLink = $("<a>").addClass("article-link").attr("href", article.link).attr("target", "_blank");
+        let $cardHeader = $("<h3>").addClass("card-header").text(article.title);
+        let $cardBlock = $("<div>").addClass("card-block");
+        let $pullRight = $("<div>").addClass("pull-right");
+        let $saveButton = $("<button>").addClass("save-article-btn btn btn-lg").text("Save");
 
-      // append article link to card
-      $articleLink.append($cardHeader);
-      $card.append($articleLink);
+        // append article link to card
+        $articleLink.append($cardHeader);
+        $card.append($articleLink);
 
-      // append card block w/ buttons to card
-      $cardBlock.append($pullRight);
-      $pullRight.append($saveButton);
-      $card.append($cardBlock);
+        // append card block w/ buttons to card
+        $cardBlock.append($pullRight);
+        $pullRight.append($saveButton);
+        $card.append($cardBlock);
 
-      // if its an even entry append to left column
-      // otherwise append to right column
-      if (index % 2 == 0) {
-        $("#left-col").append($card);
-      } else {
-        $("#right-col").append($card);
-      }
+        // if its an even entry append to left column
+        // otherwise append to right column
+        if (index % 2 == 0) {
+          $("#left-col").append($card);
+        } else {
+          $("#right-col").append($card);
+        }
 
-      return false;
-    });
+        return false;
+      });
 
-    alert(`Scrape Complete! ${data.length} Articles Retrieved`);
+      alert(`Scrape Complete! ${data.length} Articles Retrieved`);
+    },
+    error: function (err) {
+      console.log(err);
+    }
   });
-
 });
 
 // ======================================
@@ -53,7 +54,6 @@ $(document).on('click', '#scrape-btn', function (e) {
 // ======================================
 $(document).on('click', '.save-article-btn', function (e) {
   // extract information about Article
-  e.preventDefault();
 
   const title = $(this)
   .parents(".scraper-card")
@@ -77,8 +77,16 @@ $(document).on('click', '.save-article-btn', function (e) {
     url: "/",
     dataType: "json",
     data: savedArticle,
-  }).done(function (data) {
+    success: function (data) {
     // alert user article has been saved
-    alert("Article Saved!");
+      if (data) {
+        alert("Article Saved!");
+      } else {
+        alert("Article Already Saved");
+      }
+    },
+    error: function (err) {
+      alert("Article Already Saved");
+    }
   });
 });

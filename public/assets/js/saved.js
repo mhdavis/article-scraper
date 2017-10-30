@@ -1,7 +1,7 @@
 // ======================================
 // GET ARTICLE INFO INTO MODAL
 // ======================================
-$(document).on('click', '.article-notes-btn', function (e) {
+$(document).on('click', '.notes-article-btn', function (e) {
 
   $(".note-input").val('');
 
@@ -23,11 +23,15 @@ $(document).on('click', '.article-notes-btn', function (e) {
         let $li = $("<li>")
         .addClass("note-item")
         .attr("data-note-id", note._id)
-        .attr("data-note-index", index)
+        .attr("data-note-index", index);
+
+        let $noteContent = $("<div>")
+        .addClass("note-content")
         .text(note.text);
+        $li.append($noteContent);
 
         let $deleteBtn = $("<button>")
-        .addClass("delete-note-btn btn btn-danger")
+        .addClass("delete-note-btn")
         .attr("data-note-id", note._id)
         .attr("data-note-index", index)
         .text("X");
@@ -45,6 +49,9 @@ $(document).on('click', '.article-notes-btn', function (e) {
       $("#myModal").modal({
         show: true
       });
+    },
+    error: function (err) {
+      console.log(err);
     }
   });
 
@@ -53,7 +60,7 @@ $(document).on('click', '.article-notes-btn', function (e) {
 // ======================================
 // REMOVE ARTICLE
 // ======================================
-$(document).on('click', '.article-remove-btn', function (e) {
+$(document).on('click', '.remove-article-btn', function (e) {
 
   const id = $(this)
   .parents(".scraper-card")
@@ -70,6 +77,9 @@ $(document).on('click', '.article-remove-btn', function (e) {
     success: function(data) {
       const articleItem = $(`[data-article-id=${id}]`)[0];
       articleItem.remove();
+    },
+    error: function (err) {
+      console.log(err);
     }
   });
 });
@@ -99,8 +109,13 @@ $(document).on("click", ".save-note-btn", function (e) {
 
       let notes = data.notes;
       let note = notes[notes.length - 1];
+
+      let $noteContent = $("<div>")
+      .addClass("note-content")
+      .text(note.text);
+
       let $deleteBtn = $("<button>")
-      .addClass("delete-note-btn btn btn-danger")
+      .addClass("delete-note-btn")
       .attr("data-note-id", note._id)
       .attr("data-note-index", notes.length - 1)
       .text("X");
@@ -108,9 +123,9 @@ $(document).on("click", ".save-note-btn", function (e) {
       let $li = $("<li>")
       .addClass("note-item")
       .attr("data-note-id", note._id)
-      .attr("data-note-index", notes.length - 1)
-      .text(note.text);
+      .attr("data-note-index", notes.length - 1);
 
+      $li.append($noteContent);
       $li.append($deleteBtn);
       $(".notes-container").append($li);
     },
